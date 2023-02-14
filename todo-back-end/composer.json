@@ -1,0 +1,21 @@
+{
+  "name": "korkz/todo-back-end",
+  "autoload": {
+    "psr-4": {
+      "Korkz\\todoBackEnd\\": "app/"
+    }
+  },
+  "authors": [
+    {
+      "name": "hakan",
+      "email": "hakan.hizmet.54.gs@gmail.com"
+    }
+  ],
+  "require": {
+    "vlucas/valitron": "^1.4",
+    "vlucas/phpdotenv": "^5.5",
+    "ext-pdo": "*",
+    "ext-openssl": "*",
+    "ext-mbstring": "*"
+  }
+}

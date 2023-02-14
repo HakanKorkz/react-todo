@@ -1,0 +1,148 @@
+# Created by https://www.toptal.com/developers/gitignore/api/jetbrains+all,visualstudiocode,composer
+# Edit at https://www.toptal.com/developers/gitignore?templates=jetbrains+all,visualstudiocode,composer
+
+### Composer ###
+todo-back-end/composer.phar
+todo-back-end/vendor/
+
+# Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
+# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
+# composer.lock
+
+### JetBrains+all ###
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# User-specific stuff
+todo-back-end/.idea/**/workspace.xml
+todo-back-end/.idea/**/tasks.xml
+todo-back-end/.idea/**/usage.statistics.xml
+todo-back-end/.idea/**/dictionaries
+todo-back-end/.idea/**/shelf
+
+# AWS User-specific
+todo-back-end/.idea/**/aws.xml
+
+# Generated files
+todo-back-end/.idea/**/contentModel.xml
+
+# Sensitive or high-churn files
+todo-back-end/.idea/**/dataSources/
+todo-back-end/.idea/**/dataSources.ids
+todo-back-end/.idea/**/dataSources.local.xml
+todo-back-end/.idea/**/sqlDataSources.xml
+todo-back-end/.idea/**/dynamic.xml
+todo-back-end/.idea/**/uiDesigner.xml
+todo-back-end/.idea/**/dbnavigator.xml
+
+# Gradle
+todo-back-end/.idea/**/gradle.xml
+todo-back-end/.idea/**/libraries
+
+# Gradle and Maven with auto-import
+# When using Gradle or Maven with auto-import, you should exclude module files,
+# since they will be recreated, and may cause churn.  Uncomment if using
+# auto-import.
+# todo-back-end/.idea/artifacts
+# todo-back-end/.idea/compiler.xml
+# todo-back-end/.idea/jarRepositories.xml
+# todo-back-end/.idea/modules.xml
+# todo-back-end/.idea/*.iml
+# todo-back-end/.idea/modules
+# *.iml
+# *.ipr
+
+# CMake
+todo-back-end/cmake-build-*/
+
+# Mongo Explorer plugin
+todo-back-end/.idea/**/mongoSettings.xml
+
+# File-based project format
+todo-back-end/*.iws
+
+# IntelliJ
+todo-back-end/out/
+
+# mpeltonen/sbt-idea plugin
+todo-back-end/.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Cursive Clojure plugin
+todo-back-end/.idea/replstate.xml
+
+# SonarLint plugin
+todo-back-end/.idea/sonarlint/
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+todo-back-end/com_crashlytics_export_strings.xml
+todo-back-end/crashlytics.properties
+todo-back-end/crashlytics-build.properties
+todo-back-end/fabric.properties
+
+# Editor-based Rest Client
+todo-back-end/.idea/httpRequests
+
+# Android studio 3.1+ serialized cache file
+todo-back-end/.idea/caches/build_file_checksums.ser
+
+### JetBrains+all Patch ###
+# Ignore everything but code style settings and run configurations
+# that are supposed to be shared within teams.
+
+todo-back-end/.idea/*
+
+todo-back-end/!.idea/codeStyles
+todo-back-end/!.idea/runConfigurations
+
+### VisualStudioCode ###
+todo-back-end/.vscode/*
+todo-back-end/!.vscode/settings.json
+todo-back-end/!.vscode/tasks.json
+todo-back-end/!.vscode/launch.json
+todo-back-end/!.vscode/extensions.json
+todo-back-end/!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+todo-back-end/.history/
+
+# Built Visual Studio Code Extensions
+todo-back-end/*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+todo-back-end/.history
+todo-back-end/.ionide
+
+# End of https://www.toptal.com/developers/gitignore/api/jetbrains+all,visualstudiocode,composer
+todo-back-end/app/traits/key.json
+todo-back-end/app/logs/errors.json
+
+# Front-end
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+todo-front-end/node_modules
+todo-front-endtodo-front-end/.pnp.js
+
+# testing
+todo-front-end/coverage
+
+# production
+todo-front-end/build
+
+# misc
+todo-front-end/.DS_Store
+todo-front-end/.env.local
+todo-front-end/.env.development.local
+todo-front-end/.env.test.local
+todo-front-end/.env.production.local
+
+todo-front-end/npm-debug.log*
+todo-front-end/yarn-debug.log*
+todo-front-end/yarn-error.log*
+
+
+todo-back-end/composer.lock

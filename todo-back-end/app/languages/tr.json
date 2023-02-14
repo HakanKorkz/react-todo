@@ -1,0 +1,103 @@
+{
+  "admin": {
+    "general": {
+      "incoming": {
+        "1": "{{left_menu_text}}",
+        "2": "{{left_menu_text_2}}",
+        "3": "{{left_menu_text_3}}"
+      },
+      "outgoing": {
+        "1": "Anasayfa",
+        "2": "Üyeler",
+        "3": "Kategoriler"
+      }
+    },
+    "index": {
+      "incoming": {
+        "0": "{{placeholder_text}}",
+        "1": "{{messages}}"
+      },
+      "outgoing": {
+        "0": "Aradğınız kitabın adı veyahutta seri numarasının son 3 hanesi",
+        "1": "Hoş Geldiniz bu panel de yetkinize göre işlemler yapabileceğiniz modüller yan menü de belirtilmiştir.."
+      }
+    },
+    "login": {
+      "incoming": {
+        "0": "{{messages}}",
+        "1": "{{placeholder_username_text}}",
+        "2": "{{placeholder_password_text}}",
+        "3": "{{remember_me}}",
+        "4": "{{login}}",
+        "5": "{{register_new_messages}}"
+      },
+      "outgoing": {
+        "0": "Hoş Geldiniz giriş etmek için alta bulunan formu kullanınız",
+        "1": "Kullanıcı adınız",
+        "2": "Şifreniz",
+        "3": "Beni hatırla?",
+        "4": "Giriş Yap",
+        "5": "Sisteme kayıt olup talep bırakmak için tıklayınız?"
+      }
+    },
+    "register": {
+      "incoming": {
+        "0": "{{messages}}",
+        "1": "{{placeholder_username_text}}",
+        "2": "{{placeholder_password_text}}",
+        "3": "{{sign_in}}",
+        "4": "{{login_messages}}"
+      },
+      "outgoing": {
+        "0": "Sisteme kayıt talebi oluşturmak için yapmanız gereken aşağı da ki iki alanı doldurup Kayıt oluştur demeniz kaydınız yetkililer tarafından 24 saat içersinde aktif edilecektir daha sonrasında sisteme kitap yükleyebilirsiniz..",
+        "1": "Kullanıcı adınız",
+        "2": "Şifreniz",
+        "4": "Kayıt Oluştur",
+        "5": "Zaten bir kaydınız mevcutsa giriş'e dönmek için tıklayınız"
+      }
+    },
+    "users": {
+      "incoming": {
+        "0": "{{th_text_1}}",
+        "2": "{{th_text_2}}",
+        "3": "{{th_text_3}}",
+        "4": "{{th_text_4}}",
+        "5": "{{th_text_5}}",
+        "6": "{{data_on_text}}",
+        "7": "{{data_off_text}}"
+      },
+      "outgoing": {
+        "0": "#",
+        "2": "Kullanıcı adı",
+        "3": "Yetkisi",
+        "4": "Aktivasyon",
+        "5": "Kitap sayısı",
+        "6": "Aktif",
+        "7": "Pasif"
+      }
+    },
+    "categories": {
+      "incoming": {
+        "0": "{{th_text_1}}",
+        "2": "{{th_text_2}}",
+        "3": "{{th_text_3}}"
+      },
+      "outgoing": {
+        "0": "#",
+        "2": "Kategori",
+        "3": "Kitap sayısı"
+      }
+    }
+  },
+  "home": {
+    "index": {
+      "incoming": {
+        "0": "{{placeholder_text}}"
+      },
+      "outgoing": {
+        "0": "Aradığınız kitabın adını veyahutta son 3 hanesini giriniz.."
+      }
+    }
+
+      }
+}
