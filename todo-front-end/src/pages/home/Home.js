@@ -1,4 +1,4 @@
-export function Home({props}) {
+export default function Home() {
     return (
         <div className="min-w-full min-h-screen">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid amet animi asperiores beatae
