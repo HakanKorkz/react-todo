@@ -146,3 +146,4 @@ todo-front-end/yarn-error.log*
 
 
 todo-back-end/composer.lock
+todo-front-end/package-lock.json
