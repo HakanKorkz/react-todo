@@ -1,0 +1,1 @@
+## Bu proje bir back-end ve front-end todo projesidir
