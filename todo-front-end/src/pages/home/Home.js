@@ -1,9 +1,20 @@
+import {users} from "services/users";
+import React, {useEffect, useRef, useState} from "react";
+import {SearchIcon, TodoLogo} from "elements/Icons";
+
 export default function Home() {
+
+
+    useEffect(() => {
+        users().then(r => r)
+    }, [])
+
+    const data = [{"userName": "hakan"}, {"userLastName": "KORKMAZ"}]
     return (
-        <div className="min-w-full min-h-screen">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid amet animi asperiores beatae
-            consequuntur error expedita illum in, magni maiores necessitatibus nobis pariatur quae quasi quibusdam sequi
-            soluta temporibus.
+        <div className="">
+            {
+                process.env.REACT_APP_URL
+            }
         </div>
     );
 }
