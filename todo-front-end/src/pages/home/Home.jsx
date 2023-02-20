@@ -1,6 +1,5 @@
 import {users} from "services/users";
-import React, {useEffect, useRef, useState} from "react";
-import {SearchIcon, TodoLogo} from "elements/Icons";
+import React, {useEffect} from "react";
 
 export default function Home() {
 
@@ -8,6 +7,7 @@ export default function Home() {
     useEffect(() => {
         users().then(r => r)
     }, [])
+
 
     const data = [{"userName": "hakan"}, {"userLastName": "KORKMAZ"}]
     return (
