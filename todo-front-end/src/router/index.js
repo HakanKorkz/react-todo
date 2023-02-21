@@ -6,6 +6,7 @@ const {
     Home,
     Counter,
     About,
+    OutSide,
     PageNotFound,
 } = Routers
 
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
             {
                 path: "about",
                 element: About,
+            },
+            {
+                path: "out",
+                element: OutSide,
             },
             {
                 path: "*",
