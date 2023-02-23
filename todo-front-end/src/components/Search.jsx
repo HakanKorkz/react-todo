@@ -14,12 +14,19 @@ export default function Search() {
     useEffect(() => {
         window.addEventListener("load", (ev) => {
             setWindowWidth(ev?.currentTarget?.innerWidth)
+            if (!searchResizeStatus(windowWidth)) {
+                setsSearchIconBoolean(true)
+            }
         })
-        // window.addEventListener("resize", (ev) => {
-        //     setWindowWidth(ev?.currentTarget?.innerWidth)
-        // })
-
     }, [])
+    useEffect(() => {
+        window.addEventListener("resize", (ev) => {
+            setWindowWidth(ev?.currentTarget?.innerWidth)
+            if (!searchResizeStatus(windowWidth)) {
+                setsSearchIconBoolean(true)
+            }
+        })
+    }, [windowWidth])
 
     useEffect(() => {
         document.addEventListener("mousedown", ev => {
@@ -28,14 +35,10 @@ export default function Search() {
         })
 
         searchRef.current && autoAnimate(searchRef.current)
-        // searchDivPlaceholderRef.current && autoAnimate(searchDivPlaceholderRef.current)
         if (searchInputFocused) {
             searchInputRef.current.focus()
         }
-        // return () => {
-        //     document.addEventListener("mousedown", refHandle)
-        //     console.log(searchInputFocused)
-        // };
+
     }, [searchRef, search]);
     const refHandle = (event) => {
         if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -80,46 +83,83 @@ export default function Search() {
         }
     }
 
+    const searchResizeStatus = (windowWidth) => {
+      return windowWidth <= 639;
+    }
+
+    const searchMobileClickHandle = () => {
+       if (searchResizeStatus(windowWidth)) {
+           setsSearchIconBoolean(!searchIconBoolean)
+       }
+    }
 
     return (
-        <form
-            className={
-                classNames({
-                    "w-[25%] sm:border-b sm:rounded-b flex sm:justify-center items-center gap-2 sm:relative ": true,
-                    "sm:border-b-zinc-400  sm:group sm:hover:border-b-zinc-500 transition-colors": !searchInputFocused,
-                    "sm:border-b-zinc-500": searchInputFocused
-                })
-            }
-            ref={searchRef}
+        <div className={
+            classNames({
+                "w-[25%]": !searchResizeStatus(windowWidth),
+                "w-[50%]": searchResizeStatus(windowWidth),
 
-        >
 
-            <input
-                type="text"
-                ref={searchInputRef}
+            })
+        }
+        ref={parent}>
+            <form
                 className={
-                    "w-full p-2 outline-none bg-transparent max-sm:hidden"
+                    classNames({
+                        "flex items-center gap-2 ": true,
+                        "sm:border-b sm:rounded-b sm:justify-center sm:relative ": searchIconBoolean,
+                        "border-b rounded-b justify-center relative ": !searchIconBoolean,
+                        "sm:border-b-zinc-400  sm:group sm:hover:border-b-zinc-500 transition-colors": !searchInputFocused,
+                        "sm:border-b-zinc-500": searchInputFocused,
+                        "border-b-zinc-400  group hover:border-b-zinc-500 transition-colors": !searchInputFocused  && !searchIconBoolean,
+                        "border-b-zinc-500": searchInputFocused && !searchIconBoolean,
+                        "h-14 pb-2": searchInputFocused && !searchIconBoolean && searchResizeStatus(windowWidth),
+                        "font-medium": true,
+                        "text-sm break-normal":searchResizeStatus(windowWidth)
+                    })
                 }
-                onChange={event => searchChange(event.target.value)}
-            />
-            <div className="absolute w-4/5 left-2 pointer-events-none max-sm:hidden font-medium" ref={parent}
-                 id="placeholder">
-                <span> Arama </span>
-            </div>
-            {searchIconBoolean && (
-                <button type="button"
-                        className={
-                            classNames({
-                                "sm:absolute sm:right-0 max-sm:m-auto hover:cursor-pointer hover:text-zinc-500 hover:transition-all": true,
-                                "group-hover:text-zinc-500": !searchInputFocused,
-                                "text-zinc-500": searchInputFocused
-                            })
-                        }>
-                    <SearchIcon
-                        size={28}/>
-                </button>
-            )}
-        </form>
+                ref={searchRef}
+
+            >
+
+                <input
+                    type="text"
+                    ref={searchInputRef}
+                    className={
+                        classNames({
+                            "w-full p-2 pr-8 outline-none bg-transparent":true,
+                            "max-sm:hidden":searchIconBoolean,
+                        })
+                    }
+                    onChange={event => searchChange(event.target.value)}
+                />
+                <div className={
+                    classNames({
+                        "absolute w-4/5 left-2 pointer-events-none":true,
+                        "max-sm:hidden":searchIconBoolean
+                    })}
+                     ref={parent}
+                     id="placeholder"
+                >
+                    <span> Arama </span>
+                </div>
+                {searchIconBoolean && (
+                    <button type="button"
+                            className={
+                                classNames({
+                                    "sm:absolute sm:right-0 max-sm:m-auto hover:cursor-pointer hover:text-zinc-500 hover:transition-all": true,
+                                    "group-hover:text-zinc-500": !searchInputFocused,
+                                    "text-zinc-500": searchInputFocused
+                                })
+                            }
+                    onClick={searchMobileClickHandle}
+                    >
+                        <SearchIcon
+                            size={28}/>
+                    </button>
+                )}
+            </form>
+        </div>
 
     )
 }

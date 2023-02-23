@@ -1,8 +1,8 @@
 import {SiTodoist} from "react-icons/si";
 import {ImSearch} from "react-icons/im";
 import {RxCounterClockwiseClock} from "react-icons/rx";
-import {GrHomeRounded} from "react-icons/gr";
-import {AiFillContacts} from "react-icons/ai";
+import {AiFillContacts, AiOutlineHome} from "react-icons/ai";
+import {GrTextAlignRight} from "react-icons/gr";
 
 const TodoLogo = ({...props}) => {
     return  <SiTodoist {...props}/>
@@ -14,10 +14,13 @@ const CounterIcon = ({...props}) => {
     return  <RxCounterClockwiseClock {...props}/>
 }
 const HomeIcon = ({...props}) => {
-    return  <GrHomeRounded {...props}/>
+    return  <AiOutlineHome {...props}/>
 }
 const AboutIcon = ({...props}) => {
     return  <AiFillContacts {...props}/>
+}
+const MobileMenuIcon = ({...props}) => {
+    return  <GrTextAlignRight {...props}/>
 }
 
 export {
@@ -25,5 +28,6 @@ export {
     SearchIcon,
     CounterIcon,
     HomeIcon,
-    AboutIcon
+    AboutIcon,
+    MobileMenuIcon
 }
