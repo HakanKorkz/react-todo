@@ -1,35 +1,44 @@
-import React, {useEffect, useRef} from "react";
-
-function useOutsideAlerter(ref) {
+import React, {useEffect, useRef, useState} from "react";
+function useOutsideAlerter(ref,setStatus) {
     useEffect(() => {
-        /**
-         * Alert if clicked on outside of element
-         */
         function handleClickOutside(event) {
+            let stat=""
             if (ref.current && !ref.current.contains(event.target)) {
-                console.log("Benim dışımda tıkladın!");
+               stat="Benim dışımda tıkladın!";
             } else {
-                console.log("bana tıkladın")
+               stat="bana tıkladın"
             }
+
+            return stat
         }
 
         // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("mousedown", (ev)=>{
+            setStatus(handleClickOutside(ev))
+
+        });
         return () => {
             // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("mousedown", (ev)=>{
+                setStatus(handleClickOutside(ev))
+            });
         };
     }, [ref]);
 }
 
 export default function OutsideAlerter() {
     const wrapperRef = useRef(null);
-    useOutsideAlerter(wrapperRef);
+    const [status,setStatus]=useState("Tıkla");
+    useOutsideAlerter(wrapperRef,setStatus);
     return (
-        <div ref={wrapperRef}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi doloremque eos illo iusto
-            laboriosam laborum nam necessitatibus nulla quae quas quasi quisquam repellendus reprehenderit sapiente
-            sequi temporibus, unde vel.
-        </div>
+       <div className={"container mx-auto mt-28 w-1/2"}>
+           <div className="bg-gray-300 hover:bg-gray-500 p-4 text-center" ref={wrapperRef}>
+               {status}
+           </div>
+           <p className={"mt-4 border p-4 "}>
+               Bu modül sayfasında yukarı da " Bana tıkla " elamanına tıkladığınız ve dışına tıklandığının yakalandığı modül vardır
+           </p>
+
+       </div>
     )
 }
