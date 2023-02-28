@@ -1,5 +1,7 @@
 import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
+import classNames from "classnames";
+import {useSelector} from "react-redux";
 
 export default function Modules() {
     const modules = [
@@ -7,15 +9,36 @@ export default function Modules() {
             title: "Tıklama kontrol Modülü",
             description: "bu modül içerisinde belirlenen alanın içine yada dışına tıklandığı kontrol edilir",
             href: "/out"
+        },
+        {
+            title: "Tıklama kontrol Modülü",
+            description: "bu modül içerisinde belirlenen alanın içine yada dışına tıklandığı kontrol edilir",
+            href: "/note"
         }
     ]
+    const modulesCount = modules.length
+    const windowSize = useSelector((state) => state.windowSize.size)
     return (
         <div className="flex flex-wrap">
+
             {
                 modules.map((modules, index) => (
-                    <Fragment  key={index}>
+                    <Fragment key={index}>
                         {/*card*/}
-                        <div key={index} className="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
+
+
+                        <div key={index} className={classNames({
+                            "mb-4 px-2": true,
+                            "w-1/2 ": modulesCount <= 2,
+                            "w-1/3 ": modulesCount === 3,
+                            "w-1/4 ": modulesCount > 3 && modulesCount <=4,
+                            "w-1/5 ": modulesCount === 5,
+                            "w-1/6 ": modulesCount > 5,
+                            "max-sm:w-full": true,
+                            "max-md:w-1/2": modulesCount <= 2 && windowSize < 768,
+                            "max-md:w-1/3": modulesCount > 2 && windowSize < 768,
+
+                        })}>
                             <div className="h-full flex flex-col rounded-lg overflow-hidden bg-white shadow">
                                 {/*card header*/}
                                 <div

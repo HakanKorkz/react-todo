@@ -3,7 +3,10 @@ import {SearchIcon} from "elements/Icons";
 import classNames from "classnames";
 import autoAnimate from "@formkit/auto-animate";
 import {useAutoAnimate} from "@formkit/auto-animate/react";
+import {useDispatch} from "react-redux";
+import {windowSizeChange} from "features/window-size/windowSizeSlice";
 export default function Search() {
+    const dispatch=useDispatch()
     const [windowWidth, setWindowWidth] = useState(0);
     const [searchIconBoolean, setsSearchIconBoolean] = useState(true);
     const [search, setsSearch] = useState("");
@@ -18,6 +21,8 @@ export default function Search() {
                 setsSearchIconBoolean(true)
             }
         })
+        dispatch(windowSizeChange(windowWidth))
+
     }, [])
     useEffect(() => {
         window.addEventListener("resize", (ev) => {
@@ -26,6 +31,7 @@ export default function Search() {
                 setsSearchIconBoolean(true)
             }
         })
+        dispatch(windowSizeChange(windowWidth))
     }, [windowWidth])
 
     useEffect(() => {
