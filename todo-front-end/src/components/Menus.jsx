@@ -1,12 +1,17 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {NavLink, useLocation} from "react-router-dom";
-import {MobileMenuIcon} from "elements/Icons";
+import {MobileCloseIcon, MobileMenuIcon} from "elements/Icons";
 import classNames from "classnames";
 import {useSelector} from "react-redux";
 
 export default function Menus() {
-    const menus=useSelector((state)=>state.menu)
+    const states = useSelector((state) => state)
+    const menus = states.menu
     const path = useLocation()
+    const [isMobileMenu, setIsMobileMenu] = useState(false)
+    useEffect(() => {
+        console.log(isMobileMenu)
+    }, [isMobileMenu])
     return (
         <>
             <div
@@ -27,16 +32,45 @@ export default function Menus() {
                         })
                     }
                 </div>
+
                 <div className={"md:hidden flex gap-2 flex-1 justify-end"}>
-                    <button className={"hover:text-zinc-500 transition-colors"}>
+                    <button className={"hover:text-zinc-500 transition-colors"}
+                            onClick={() => setIsMobileMenu(!isMobileMenu)}>
                         <MobileMenuIcon size={48}/>
                     </button>
+                    <div className={classNames({
+                        "fixed w-full h-full top-0 p-4  bg-zinc-300 transition-all duration-1000": true,
+                        "left-full": !isMobileMenu,
+                        "left-0": isMobileMenu
+                    })}>
+                        <div className={"relative flex flex-1 flex-col justify-center content-center items-center gap-2 w-full"}>
+                          <button className={"absolute left-0 top-0 bg-zinc-500 hover:bg-zinc-400 w-7 h-7 rounded-full flex text-center justify-center items-center "}
+                                  onClick={() => setIsMobileMenu(!isMobileMenu)}
+                          >
+                              <MobileCloseIcon size={24} className={"text-zinc-100 hover:text-zinc-200"}/>
+                          </button>
+                            <div className={"flex flex-1 flex-col justify-center content-center items-center gap-2 mt-10 w-full"}>
+                                {
+                                    menus.map((menu, i) => {
+                                        return (
+                                            <NavLink to={menu.to} key={i}
+                                                     className={classNames({
+                                                         "flex flex-col justify-center content-center items-center  bg-zinc-100 rounded-full w-1/2 hover:text-zinc-300 hover:bg-zinc-400 p-2": true,
+                                                         "text-zinc-300 bg-zinc-400": path.pathname === menu.to
+                                                     })}
+                                                     onClick={() => setIsMobileMenu(false)}
+                                            >
+                                                {menu.icon} {menu.name}
+                                            </NavLink>
+                                        )
+                                    })
+                                }
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-                <div className={"fixed w-full h-full left-full top-0 p-4  bg-amber-800 transition-all duration-1000  "}>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam amet dicta dolorem, eum
-                    exercitationem illo incidunt molestiae nam numquam quo repellat, repudiandae voluptate. Atque
-                    inventore libero magnam pariatur provident?
-                </div>
+
             </div>
 
         </>
