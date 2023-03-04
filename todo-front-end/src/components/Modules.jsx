@@ -11,9 +11,14 @@ export default function Modules() {
             href: "/out"
         },
         {
-            title: "Tıklama kontrol Modülü",
-            description: "bu modül içerisinde belirlenen alanın içine yada dışına tıklandığı kontrol edilir",
+            title: "not tutma Modülü",
+            description: "bu modül içerisinde not tutma işlevi yapılıyor basit düzeyde",
             href: "/note"
+        },
+        {
+            title: "Bcrypt Modülü",
+            description: "Bcrypt Modülü ile şifre oluşturma ve şifre kontrol modülü",
+            href: "/bcrypt-generator"
         }
     ]
     const modulesCount = modules.length

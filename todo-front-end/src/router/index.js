@@ -8,6 +8,7 @@ const {
     About,
     OutSide,
     Notes,
+    BcryptGenerator,
     PageNotFound,
 } = Routers
 
@@ -36,6 +37,11 @@ export const router = createBrowserRouter([
             {
                 path:"note",
                 element: Notes
+
+            },
+            {
+                path:"bcrypt-generator",
+                element: BcryptGenerator
 
             },
             {
