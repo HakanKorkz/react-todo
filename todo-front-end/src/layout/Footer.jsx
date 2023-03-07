@@ -1,7 +1,5 @@
-import React from "react";
+import React from "react"
 
 export default function Footer() {
-    return (
-        <div className={"bg-amber-800 w-full h-40 p-2"}>Footer Component</div>
-    )
+  return <div className={"h-40 w-full bg-amber-800 p-2"}>Footer Component</div>
 }

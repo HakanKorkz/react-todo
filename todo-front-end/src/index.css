@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-    html,body,#root {
-        @apply h-full h-full accent-zinc-50
-    }
+  html,
+  body,
+  #root {
+    @apply h-full h-full accent-zinc-50;
+  }
 }
