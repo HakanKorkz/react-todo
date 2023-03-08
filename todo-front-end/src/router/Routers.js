@@ -5,6 +5,7 @@ import PageNotFound from "pages/home/PageNotFound"
 import OutsideAlerter from "pages/home/OutsideAlerter"
 import Notes from "pages/home/Notes"
 import Bcrypt from "pages/home/Bcrypt"
+import Blank from "pages/home/Blank"
 const Routers = {
   Home: <Home />,
   About: <About />,
@@ -12,6 +13,7 @@ const Routers = {
   OutSide: <OutsideAlerter />,
   Notes: <Notes />,
   BcryptGenerator: <Bcrypt />,
+  Blank: <Blank />,
   PageNotFound: <PageNotFound />,
 }
 
