@@ -6,8 +6,12 @@ import OutsideAlerter from "pages/home/OutsideAlerter"
 import Notes from "pages/home/Notes"
 import Bcrypt from "pages/home/Bcrypt"
 import Blank from "pages/home/Blank"
+import Login from "pages/auth/Login"
+import Register from "pages/auth/Register"
 const Routers = {
   Home: <Home />,
+  Login: <Login />,
+  Register: <Register />,
   About: <About />,
   Counter: <Counter />,
   OutSide: <OutsideAlerter />,

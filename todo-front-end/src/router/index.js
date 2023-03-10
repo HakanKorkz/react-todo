@@ -1,9 +1,19 @@
-import { createBrowserRouter, Outlet } from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom"
 import Routers from "./Routers"
 import ProtectedRouters from "utils/ProtectedRouters"
-import AuthLayout from "layout/auth/AuthLayout"
 
-const { Home, Counter, About, OutSide, Notes, BcryptGenerator, Blank, PageNotFound } = Routers
+const {
+  Home,
+  Login,
+  Register,
+  Counter,
+  About,
+  OutSide,
+  Notes,
+  BcryptGenerator,
+  Blank,
+  PageNotFound,
+} = Routers
 
 export const router = createBrowserRouter([
   {
@@ -46,16 +56,16 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "login",
-        element: <>Login</>,
+        element: Login,
         index: true,
       },
       {
         path: "register",
-        element: <>Register</>,
+        element: Register,
       },
       {
         path: "*",
-        element: <>Aranılan bulunamadı</>,
+        element: PageNotFound,
       },
     ],
   },
