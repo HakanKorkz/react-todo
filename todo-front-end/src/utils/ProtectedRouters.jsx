@@ -17,8 +17,11 @@ export default function ProtectedRouters() {
   //   },
   // ])
   const location = useLocation()
-  const locationControl = location.pathname.split("/")
-  const locationAuthControl = locationControl.at(1)
+  const locationControl = location.pathname.substring(1).split("/")
+  const locationAuthControl = locationControl.at(0)
+  let filteredLocationControl = locationControl.filter(function (el) {
+    return el !== ""
+  })
 
   // const regex = new RegExp(/^[a-zA-Z/]*$/)
   // console.log(user.length)
@@ -37,7 +40,7 @@ export default function ProtectedRouters() {
   ) : locationAuthControl !== "auth" ? (
     // burada user state boşsa ve auth den gelmemişse auth/login yönlendirilir
     <Navigate to={"auth/login"} />
-  ) : locationControl.length > 2 ? (
+  ) : filteredLocationControl.length > 1 ? (
     // burada sadece auth  control yapılır
     user.length === 0 ? (
       // burada user state boşsa sayfalar gözükür
@@ -48,6 +51,6 @@ export default function ProtectedRouters() {
     )
   ) : (
     // burada sadece auth ise istek login yönlendirilir
-    <Navigate to={"login"} />
+    filteredLocationControl.length < 2 && <Navigate to={"login"} />
   )
 }
