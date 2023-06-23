@@ -12,7 +12,6 @@ class Router
     /**
      * @var array|string
      */
-
     public array|string $ENV;
 
     public function __construct()
@@ -47,14 +46,12 @@ class Router
 
         }
         $extension = $this->fileExtension($url);
-
         if ($extension) {
             $result = str_replace('.' . $extension, '', $url);
 
         } else {
             $result = $url;
         }
-
         return $result;
 
     }
@@ -67,19 +64,12 @@ class Router
     {
         $constantsAim = str_replace("[\"", "", $aim);
         $constantsAim = str_replace("\"]", "", $constantsAim);
-
         return explode(",", str_replace("\"", "", $constantsAim));
 
     }
 
 
-    /**
-     * @param $requestUrl
-     * @param string $control
-     * @param bool $debug
-     * @return false|mixed|string
-     */
-    public function router($requestUrl, string $control = "", bool $debug = false): mixed
+    public function router($requestUrl, string $control = "", bool $debug = false): object|bool|array|string
     {
         $env = $this->ENV;
         $controlEnv = $env["CONSTANTS_CONTROL"];
@@ -108,26 +98,29 @@ class Router
         } else {
             $localPath = $pathRoot;
         }
-
         if ($control !== "$controlEnv") {
             $key = array_search($path, $aim);
             if (in_array($path, $aim)) { // varsayılan taraf işlemleri
-                //$path = str_replace("$aim[$key]", "", $path);
+                $path = str_replace("$aim[$key]", "", $path);
                 $location = $aim[$key];
                 $path = ltrim($path, "/");
                 $path = rtrim($path, "/");
                 if (empty($path)) {
                     $path = "index";
                 }
+                $orjPath=$path;
             } else { // eşleşen tarafı işlemleri
-                // $path = str_replace($aim[$key], "", $path);
+                //$path = str_replace($aim[$key], "", $path);
                 $path = ltrim($path, "/");
                 $path = rtrim($path, "/");
                 $location = $aim[$key];
                 if (empty($path)) {
                     $path = "index";
+                    $orjPath=$path;
+
                 } else {
-                    list($location, $path) = $this->filesRoot($path, $localPath, $env);
+                    $orjPath=$path;
+                     list($location, $path) = $this->filesRoot($path, $localPath, $env);
                 }
 
             }
@@ -141,9 +134,7 @@ class Router
                 $getAttribute = "noData";
                 $attribute = false;
             }
-
             $pathDir = "$localPath/app/controller/$location/$path.php";
-
             if (!file_exists("$pathDir")) {
                 if ($_SERVER["HTTP_HOST"] === $env["CONSTANTS_HOST"]) {
                     $url = $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"] . "/$hostName/404";
@@ -158,8 +149,11 @@ class Router
                 $hostPath = $_SERVER["REQUEST_SCHEME"] . "://$hostName/";
             }
 
-            $pathResult = ["hostPath" => $hostPath, "pathRoot" => dirname(__DIR__), "path" => "$pathDir", "layout" => "$localPath/views/$location/layout", "location" => $location, "pages" => $path, "getAttribute" => $getAttribute, "attributeBoolean" => $attribute];
 
+            if (array_key_exists($orjPath,requestPathList)) {
+                $path = str_replace($path, $orjPath, $path);
+            }
+            $pathResult = ["hostPath" => $hostPath, "pathRoot" => dirname(__DIR__), "path" => "$pathDir", "layout" => "$localPath/views/$location/layout", "location" => $location, "pages" => $path, "getAttribute" => $getAttribute, "attributeBoolean" => $attribute];
             if ($debug) {
                 return json_encode($pathResult);
             } else {
@@ -177,25 +171,19 @@ class Router
     /**
      * @param $requestUrl
      * @param string $control
-     * @return false|mixed|string
+     * @return string|array|bool|object
      */
-    public static function langRouter($requestUrl, string $control = ""): mixed
+    public static function langRouter($requestUrl, string $control = ""): string|array|bool|object
     {
         return (new Router)->router($requestUrl, $control);
     }
 
-    /**
-     * @param $path
-     * @param $localPath
-     * @param $env
-     * @return array
-     */
 
     private function filesRoot($path, $localPath, $env): array
     { // burada hangi sayfa ile döniş edileceğinin son hali ele alınıyor
-        if (str_contains($path, "404")) {
-            $path = str_replace("404", "PageNotFound", $path);
-        }
+        $path = str_replace($path, requestPathList[$path], $path);
+
+        $path = ucwords($path);
         $path = ltrim($path, "/");
         $path = rtrim($path, "/");
         $paths = explode("/", $path);
@@ -210,7 +198,6 @@ class Router
             }
 
         }
-
         return [$pathRoot, $this->fileCheck($pathRoot, $localPath, $aims, $paths)];
 
     }
@@ -226,6 +213,7 @@ class Router
     { // bu fonksiyon da istek atılan lokasyon da öyle bir sayfa mevcuta var mı kontrolü yapılıyor
         $pathDir = "";
         foreach ($paths as $path) {
+            $path = ucwords($path);
             if (file_exists("$localPath/app/controller/$patRoot/$path.php")) {
                 $pathDir = $path;
                 break;
@@ -251,7 +239,6 @@ class Router
             $hostUrl = $_SERVER["REQUEST_SCHEME"] . "://$hostName/$url";
 
         }
-
         header("Location:$hostUrl");
         die();
 

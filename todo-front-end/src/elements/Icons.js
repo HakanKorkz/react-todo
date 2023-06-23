@@ -3,6 +3,7 @@ import { ImSearch } from "react-icons/im"
 import { RxCounterClockwiseClock } from "react-icons/rx"
 import { AiFillContacts, AiOutlineClose, AiOutlineHome } from "react-icons/ai"
 import { GrTextAlignRight } from "react-icons/gr"
+import { MdAccountBox, MdEmail, MdLockOpen, MdLockOutline } from "react-icons/md"
 
 const TodoLogo = ({ ...props }) => {
   return <SiTodoist {...props} />
@@ -26,5 +27,29 @@ const MobileMenuIcon = ({ ...props }) => {
 const MobileCloseIcon = ({ ...props }) => {
   return <AiOutlineClose {...props} />
 }
+const AuthLockOpen = ({ ...props }) => {
+  return <MdLockOpen {...props} />
+}
+const AuthEmail = ({ ...props }) => {
+  return <MdEmail {...props} />
+}
+const AuthUserIcon = ({ ...props }) => {
+  return <MdAccountBox {...props} />
+}
+const AuthLockClosed = ({ ...props }) => {
+  return <MdLockOutline {...props} />
+}
 
-export { TodoLogo, SearchIcon, CounterIcon, HomeIcon, AboutIcon, MobileMenuIcon, MobileCloseIcon }
+export {
+  TodoLogo,
+  SearchIcon,
+  CounterIcon,
+  HomeIcon,
+  AboutIcon,
+  MobileMenuIcon,
+  MobileCloseIcon,
+  AuthUserIcon,
+  AuthEmail,
+  AuthLockClosed,
+  AuthLockOpen,
+}
